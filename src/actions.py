@@ -45,12 +45,12 @@ gpio = (12,13,24)#GPIOS for 'var'. Add other GPIOs that you want
 stnname=('Radio One', 'Radio 2', 'Radio 3', 'Radio 5')#Add more stations if you want
 stnlink=('http://www.radiofeeds.co.uk/bbcradio2.pls', 'http://www.radiofeeds.co.uk/bbc6music.pls', 'http://c5icy.prod.playlists.ihrhls.com/1469_icy', 'http://playerservices.streamtheworld.com/api/livestream-redirect/ARNCITY.mp3')
 
-#IP Address of ESP
-ip='xxxxxxxxxxxx'
-
-#Declaration of ESP names
-devname=('Device 1', 'Device 2', 'Device 3')
-devid=('/Device1', '/Device2', '/Device3')
+#IP Address of ESPs
+#replace xxx in the following IPs with your specific details for each ESP/SonOff
+ESP1_ip='192.168.1.xxx'
+ESP2_ip='192.168.1.xxx'
+ESP3_ip='192.168.1.xxx'
+ESP4_ip='192.168.1.xxx'
 
 for pin in gpio:
     GPIO.setup(pin, GPIO.OUT)
@@ -105,21 +105,72 @@ def radio(phrase):
             say("Tuning into " + name)
             p = subprocess.Popen(["/usr/bin/vlc",station],stdin=subprocess.PIPE,stdout=subprocess.PIPE)
 
-#ESP6266 Devcies control
-def ESP(phrase):
-    for num, name in enumerate(devname):
-        if name.lower() in phrase:
-            dev=devid[num]
-            if 'on' in phrase:
-                ctrl='=ON'
-                say("Turning On " + name)
-            elif 'off' in phrase:
-                ctrl='=OFF'
-                say("Turning Off " + name)
-            subprocess.Popen(["elinks", ip + dev + ctrl],stdin=subprocess.PIPE,stdout=subprocess.PIPE)
-            time.sleep(2)
-            subprocess.Popen(["/usr/bin/pkill","elinks"],stdin=subprocess.PIPE)
+#ESP/SOnOff control for Devices 1 to 4 (one ESP per device), 
+#works for ESP8266 with ESPEasy firmware
+def device1(phrase):
+    if 'on' in phrase:
+        event='/control?cmd=gpio,12,1' #turn ESP1 GPIO output ON
+        say("Switching device On ")
+        subprocess.Popen(["elinks", ESP1_ip + event],stdin=subprocess.PIPE,stdout=subprocess.PIPE)
+        time.sleep(2)
+        subprocess.Popen(["/usr/bin/pkill","elinks"],stdin=subprocess.PIPE)
+    elif 'off' in phrase:
+        event='/control?cmd=gpio,12,0' #turn ESP1 GPIO output OFF
+        #say("Switching device Off ")
+        subprocess.Popen(["elinks", ESP1_ip + event],stdin=subprocess.PIPE,stdout=subprocess.PIPE)
+        time.sleep(2)
+        subprocess.Popen(["/usr/bin/pkill","elinks"],stdin=subprocess.PIPE)
+    else:
+        say("sorry, I didnt get that")  
+        
+def device2(phrase): 
+    if 'on' in phrase:
+        event='/control?cmd=gpio,12,1' #turn ESP2 GPIO output ON
+        #say("Switching device On ")
+        subprocess.Popen(["elinks", ESP2_ip + event],stdin=subprocess.PIPE,stdout=subprocess.PIPE)
+        time.sleep(2)
+        subprocess.Popen(["/usr/bin/pkill","elinks"],stdin=subprocess.PIPE)
+    elif 'off' in phrase:
+        event='/control?cmd=gpio,12,0' #turn ESP2 GPIO output OFF
+        #say("Switching device Off ")
+        subprocess.Popen(["elinks", ESP2_ip + event],stdin=subprocess.PIPE,stdout=subprocess.PIPE)
+        time.sleep(2)
+        subprocess.Popen(["/usr/bin/pkill","elinks"],stdin=subprocess.PIPE)
+    else:
+        say("sorry, I didnt get that") 
 
+def device3(phrase): 
+    if 'on' in phrase:
+        event='/control?cmd=gpio,12,1' #turn ESP3 GPIO output ON
+        #say("Switching device On")
+        subprocess.Popen(["elinks", ESP3_ip + event],stdin=subprocess.PIPE,stdout=subprocess.PIPE)
+        time.sleep(2)
+        subprocess.Popen(["/usr/bin/pkill","elinks"],stdin=subprocess.PIPE)
+    elif 'off' in phrase:
+        event='/control?cmd=gpio,12,0' #turn ESP3 GPIO output OFF
+        #say("Switching device Off ")
+        subprocess.Popen(["elinks", ESP3_ip + event],stdin=subprocess.PIPE,stdout=subprocess.PIPE)
+        time.sleep(2)
+        subprocess.Popen(["/usr/bin/pkill","elinks"],stdin=subprocess.PIPE)
+    else:
+        say("sorry, I didnt get that") 
+
+def device4(phrase): 
+    if 'on' in phrase:
+        event='/control?cmd=gpio,12,1' #turn ESP4 GPIO output ON
+        #say("Switching device On ")
+        subprocess.Popen(["elinks", ESP4_ip + event],stdin=subprocess.PIPE,stdout=subprocess.PIPE)
+        time.sleep(2)
+        subprocess.Popen(["/usr/bin/pkill","elinks"],stdin=subprocess.PIPE)
+    elif 'off' in phrase:
+        event='/control?cmd=gpio,12,0' #turn ESP4 GPIO output OFF
+        #say("Switching device Off ")
+        subprocess.Popen(["elinks", ESP4_ip + event],stdin=subprocess.PIPE,stdout=subprocess.PIPE)
+        time.sleep(2)
+        subprocess.Popen(["/usr/bin/pkill","elinks"],stdin=subprocess.PIPE)
+    else:
+        say("sorry, I didnt get that")         
+            
 #Stepper Motor control
 def SetAngle(angle):
     duty = angle/18 + 2
@@ -761,7 +812,7 @@ def Action(phrase):
         time.sleep(10)
         os.system("sudo shutdown -h now")
         #subprocess.call(["shutdown -h now"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    if 'servo' in phrase:
+    if 'motor' in phrase:
         for s in re.findall(r'\b\d+\b', phrase):
             SetAngle(int(s))
     if 'zero' in phrase:
