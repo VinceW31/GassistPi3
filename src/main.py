@@ -187,7 +187,7 @@ def main():
         credentials = google.oauth2.credentials.Credentials(token=None,
                                                             **json.load(f))
     with Assistant(credentials, args.device_model_id) as assistant:
-        subprocess.Popen(["aplay", "/home/pi/GassistPi/sample-audio-files/Startup.wav"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        subprocess.Popen(["aplay", "/home/pi/GassistPi/sample-audio-files/Fb.wav"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         events = assistant.start()
         print('device_model_id:', args.device_model_id + '\n' +
               'device_id:', assistant.device_id + '\n')
