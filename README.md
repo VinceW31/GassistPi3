@@ -42,7 +42,7 @@ CLI or Raspbian Lite does not support all features, so please use the Standard R
 
 
 *************************************************
-## **2. CLONE the PROJECT on to your Pi3**   
+## **2. Clone the Project on to your Pi3**   
 *************************************************
 Open a terminal and enter the following:  
 ```
@@ -69,8 +69,9 @@ sudo reboot
 ## **4. Audio Configuration**
 *************************************************  
 
-#Setup audio configuration.
-#(This step is for a simple naked RPi3 configuration using a USB Mic and amplified Speaker(s) connected to the on-board audio jack of the RPi3.   It does not support setups consisting of the AIY-HAT or any other CUSTOM-HATs.)
+Setup audio configuration.
+
+(This step is for a simple naked RPi3 configuration using a USB Mic and amplified Speaker(s) connected to the on-board audio jack of the RPi3.   It does not support setups consisting of the AIY-HAT or any other CUSTOM-HATs.)**
  
 4.1.Enter the following commands line by line (copy and paste should work fine):
 ```
@@ -79,30 +80,48 @@ sudo /home/pi/GassistPi/audio-drivers/USB-MIC-JACK/scripts/usb-mic-onboard-jack.
 ```
 
 4.2. Setup the Speaker configuration.
+
 Right click the speaker icon on the desktop (top right) and select Analog Audio so its ticked.
+
 Right click the speaker icon again and select USB Device Settings,
+
 in the new window make sure the Sound Card option at the top of the window is on bcm2835 ALSA,
+
 Click on the Select Controls button at the bottom of the window.
+
 Click on the PCM box to enable it and then select Close.
+
 The speaker output should now be displayed and enabled, set Vol to max.
-Select OK to close the box.
+
+Select OK to close the box. 
+
 
 4.3 Setup the USB Mic configuration.
+
 Right click the speaker icon again and select USB Device Settings once more, 
-in the new window click on the bcm2835 ALSA option and change it to the USB PnP Sound Device option
+
+in the new window click on the bcm2835 ALSA option and change it to the USB PnP Sound Device option.
+
 Click on the Select Controls button at the bottom of the window and enable both the Mic and AGC options then select Close.
-on the Capture Tab enable the microphone and raise input Vol to Max
+
+on the Capture Tab enable the microphone and raise input Vol to Max.
+
 on the Switches Tab click on the Auto Gain Control box to enable it. 
+
 Select OK to close the box.
 
+
 4.4 Audio testing.
+
 Test speaker output by entering the following command:
 ```
 speaker-test -t wav  
 ```
 You should hear Front, Left, Front, Left repeatedly. Enter Ctrl C to end the test.
 
+
 Test Microphone input by entering the follwing commands:
+
 To record a 5 second voice test enter the following then speak into the Mic:
 ```
 arecord --format=S16_LE --duration=5 --rate=16000 --file-type=raw out.wav
