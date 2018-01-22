@@ -3,12 +3,12 @@
 
 
 *******************************************************************************************************************************
-### GassistPi3 is copied from the original GassistPi by shivasiddharth, this can be found at: https://github.com/shivasiddharth/GassistPi/  
-### The new code GassistPi3 is available here and has updated to include more functionality relating to IoT, controlling external devices and Home Automation.  Its been developed for use with a naked Rasberry Pi3 using just a USB microphone and speaker(s) plugged into the on board audio jack.  The code may work on earlier Raspberry Pis too, but nothing is guaranteed!
+### GassistPi3 is copied from the original GassistPi by shivasiddharth, the original code can be found at: https://github.com/shivasiddharth/GassistPi/  
+### GassistPi3 includes further development and now supports more functionality relating to IoT, controlling external devices and Home Automation.  Its been simplified where possible from the original code and developed for use only with a naked Rasberry Pi3 using just a USB microphone and amplified speaker(s) plugged into the on-board audio jack.  The code may work on earlier Raspberry Pis too, but nothing is guaranteed!
  
 *******************************************************************************************************************************
 
-# Original Features:  
+# Original Features of GassistPi (still available in this release):  
 **1.   Headless auto start on boot.**    
 **2.   Direct Voice control of GPIOs without any need for IFTTT, api.ai, Actions SDK.**   
 **3.   Radio station streaming.**  
@@ -23,84 +23,96 @@
 **12.  Control of Kodi or Kodi Integration**.  
 **13.  Streaming music from Google Play Music.**    
 
-# New Features:
+# New Features of GassistPi3 in this release:
 **1.   Direct Voice control of SOnOff wireless switches, ESP8266 and NodeMCU with simple HTTP commands.**  
-*******************************************************************************************************************************  
+
+
+*******************************************************************************************************************************
 # Important Notes: 
+**This Project has adopted the new Google Assistant SDK features released on 20th Dec 2017. Old installations of the Google Assistant SDK will not work. So kindly reformat your SD Card and start again from the begining**  
 
-**The Project has adopted the new Google Assistant SDK features released on 20th Dec 2017. Old installations of the Google Assistant SDK will not work. So kindly reformat your SD Card and start again from the begining**  
-
-**If you dont need the new features (to control external devices with voice commands) or you're using anything other than an RPi3 then please use the code available from https://github.com/shivasiddharth/GassistPi/**
+**If you dont need the new features of GassistPi3 (to control external devices with voice commands) or you're using anything other than an RPi3 then please feel free to use the original code available from https://github.com/shivasiddharth/GassistPi/**
 *******************************************************************************************************************************
 
 
-*******************************************************************************************************************************  
+**************************************************
 ## **1. Create a new SD card image** 
-*******************************************************************************************************************************
+**************************************************
 CLI or Raspbian Lite does not support all features, so please use the Standard Raspbian Desktop image available from https://www.raspberrypi.org/downloads/raspbian/
+
 
 *************************************************
 ## **2. CLONE the PROJECT on to your Pi3**   
 *************************************************
 Open a terminal and enter the following:  
-
 ```
 git clone https://github.com/VinceW31/GassistPi3    
 ```
 (you may need to type this in manually if copy and paste produces an error)
 
-*************************************************  
-## **3. INSTALL AUDIO CONFIG FILES**
-*************************************************  
-1. Update OS and Kernel    
 
+*************************************************  
+## **3. Update to Latest Versions**
+*************************************************  
+Update OS and Kernel    
 ```
 sudo apt-get update  
 sudo apt-get install raspberrypi-kernel  
 ```
-
-2. Restart your Pi3
-
+Restart your Pi3
 ```
 sudo reboot
 ```
 
-3. Setup audio configuration
-**This step is for a simple naked RPi3 configuration using a USB Mic and amplified speaker(s) connected to the on-board audio jack of the RPi3.   It does not support setups consisting of the AIY-HAT or any other CUSTOM-HATs.**
+
+*************************************************  
+## **4. Audio Configuration**
+*************************************************  
+
+#Setup audio configuration.
+#(This step is for a simple naked RPi3 configuration using a USB Mic and amplified Speaker(s) connected to the on-board audio jack of the RPi3.   It does not support setups consisting of the AIY-HAT or any other CUSTOM-HATs.)
  
-3.1.Enter the following commands line by line:
-(copy and paste should work fine) 
+4.1.Enter the following commands line by line (copy and paste should work fine):
 ```
 sudo chmod +x /home/pi/GassistPi/audio-drivers/USB-MIC-JACK/scripts/usb-mic-onboard-jack.sh  
 sudo /home/pi/GassistPi/audio-drivers/USB-MIC-JACK/scripts/usb-mic-onboard-jack.sh  
 ```
-3.2. Setup Speaker
-Right click the speaker icon on the desktop (top right) and select Analog Audio so its ticked
 
-3.3 Setup USB Mic
-Right click the speaker icon again and select the External USB option at the bottom of the drop down list
-In the new window select Controls, then click on the PCM box.
+4.2. Setup the Speaker configuration.
+Right click the speaker icon on the desktop (top right) and select Analog Audio so its ticked.
+Right click the speaker icon again and select USB Device Settings,
+in the new window make sure the Sound Card option at the top of the window is on bcm2835 ALSA,
+Click on the Select Controls button at the bottom of the window.
+Click on the PCM box to enable it and then select Close.
+The speaker output should now be displayed and enabled, set Vol to max.
+Select OK to close the box.
 
-```
-speaker-test  
-```
+4.3 Setup the USB Mic configuration.
+Right click the speaker icon again and select USB Device Settings once more, 
+in the new window click on the bcm2835 ALSA option and change it to the USB PnP Sound Device option
+Click on the Select Controls button at the bottom of the window and enable both the Mic and AGC options then select Close.
+on the Capture Tab enable the microphone and raise input Vol to Max
+on the Switches Tab click on the Auto Gain Control box to enable it. 
+Select OK to close the box.
 
-**Those Using HDMI/Onboard Jack, make sure to force the audio**  
-```
-sudo raspi-config  
-```
-Select advanced options, then audio and choose to force audio
-
-**Those using any other DACs or HATs install the cards as per the manufacturer's guide
- and then you can try using the USB-DAC config file after changing the hardware ids**        
-
-4. Restart Pi
-
-5. Check the speaker using the following command    
-
+4.4 Audio testing.
+Test speaker output by entering the following command:
 ```
 speaker-test -t wav  
-```  
+```
+You should hear Front, Left, Front, Left repeatedly. Enter Ctrl C to end the test.
+
+Test Microphone input by entering the follwing commands:
+To record a 5 second voice test enter the following then speak into the Mic:
+```
+arecord --format=S16_LE --duration=5 --rate=16000 --file-type=raw out.wav
+```
+Playback your recording with:
+```
+aplay --format=S16_LE --rate=16000 out.wav
+```
+You should hear your voice recording.  Adjust Volumes to suit.
+
 
 **********************************************************************  
 ## **CONTINUE after SETTING UP AUDIO**
