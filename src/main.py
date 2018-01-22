@@ -37,6 +37,7 @@ from actions import device1
 from actions import device2
 from actions import device3
 from actions import device4
+from actions import ShutDown
 from actions import track
 from actions import feed
 from actions import kodiactions
@@ -211,18 +212,21 @@ def main():
             if 'tune into'.lower() in str(usrcmd).lower():
                 assistant.stop_conversation()
                 radio(str(usrcmd).lower())
-            if appliance1.lower() in str(usrcmd).lower(): # you can change "lamp" in this line to reflect your own device
+            if 'shut down'.lower() in str(usrcmd).lower():
                 assistant.stop_conversation()
-                device1(str(usrcmd).lower()) # do not change "device1" in this line   
-            if appliance2.lower() in str(usrcmd).lower(): # you can change "device 2", in this line only, to reflect your device (eg Lamp)
+                ShutDown(str(usrcmd).lower())
+            if appliance1.lower() in str(usrcmd).lower(): 
                 assistant.stop_conversation()
-                device2(str(usrcmd).lower()) # do not change "device2" in this line
-            if appliance3.lower() in str(usrcmd).lower(): # you can change "device 3", in this line only, to reflect your device (eg Lamp)
+                device1(str(usrcmd).lower())  
+            if appliance2.lower() in str(usrcmd).lower(): 
                 assistant.stop_conversation()
-                device3(str(usrcmd).lower()) # do not change "device3" in this line   
-            if appliance4.lower() in str(usrcmd).lower(): # you can change "device 4", in this line only, to reflect your device (eg Lamp)
+                device2(str(usrcmd).lower())
+            if appliance3.lower() in str(usrcmd).lower(): 
                 assistant.stop_conversation()
-                device4(str(usrcmd).lower()) # do not change "device4" in this line
+                device3(str(usrcmd).lower())
+            if appliance4.lower() in str(usrcmd).lower(): 
+                assistant.stop_conversation()
+                device4(str(usrcmd).lower()) 
             if 'parcel'.lower() in str(usrcmd).lower():
                 assistant.stop_conversation()
                 track()
