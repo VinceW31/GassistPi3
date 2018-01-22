@@ -47,7 +47,7 @@ stnlink=('http://www.radiofeeds.co.uk/bbcradio2.pls', 'http://www.radiofeeds.co.
 
 #IP Address of ESPs
 #replace xxx in the following IPs with your specific details for each ESP/SonOff
-ESP1_ip='192.168.1.xxx'
+ESP1_ip='192.168.1.95'
 ESP2_ip='192.168.1.xxx'
 ESP3_ip='192.168.1.xxx'
 ESP4_ip='192.168.1.xxx'
