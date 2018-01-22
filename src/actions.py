@@ -806,6 +806,12 @@ def YouTube_Autoplay(phrase):
 
 
 #GPIO Device Control
+def ShutDown(phrase):
+    if 'shut down' in phrase:
+        say('OK, Shutting down')
+        time.sleep(10)
+        os.system("sudo shutdown -h now")
+        
 def Action(phrase):
     if 'shut down' in phrase:
         say('Shutting down Raspberry Pi')
