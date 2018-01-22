@@ -1,14 +1,14 @@
-# GassistPi -- Google Assistant for all Raspberry Pi Boards  
+# GassistPi3 -- Google Assistant for Raspberry Pi3  
 *******************************************************************************************************************************
-### **If you like the work, find it useful and if you would like to get me a :coffee: :smile:** [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7GH3YDCHZ36QN)  
+
 
 *******************************************************************************************************************************
-## GassistPi updated with Google Play Music streaming and YouTube autoplay feature  
+## GassistPi3 is copied from the original GassistPi by shivasiddharth (  ) and updated to include more functionality relating to IoT, controlling external devices and Home Automation.  It developed for use with a naked Rasberry Pi 3 with just a USB microphone and speaker(s) plugged into the on board audio jack.  The code may work on earlier Raspberry Pis too, but nothing is guaranteed!
+ 
 
-### Existing GassistPi users on the latest SDK can update their Pi using the given script to add the new feature. Due to Pi Zero's processing limitations, the feature has been added only for Pi 3 and Pi 2 users. Pi Zero users, need not update.
-https://github.com/shivasiddharth/GassistPi/blob/update-script/GassistPi-09-Jan-2018-update.sh  
+### Existing GassistPi users 
 
-### New users, continue as instructed below in the README doc.
+### New users, 
 *******************************************************************************************************************************
 
 # Features:  
@@ -210,7 +210,7 @@ The default keyword for servo motor is **servo**. For example, the command **tri
 
 If you wish to change the keyword, you can replace the 'servo' in the action.py script with your desired keyword for the motor.
 
-For safe shutdown of the pi, command is: **trigger shutdown**  
+For safe shutdown of the pi, command is: **shut down**  
 
 You can define your own custom actions in the **actions.py** script.  
 **THE ACTIONS SCRIPT OF THIS PROJECT IS DIFFERENT FROM AIY KIT's SCRIPT, COPY PASTING THE COMMANDS FROM AIY's ACTION SCRIPT WILL NOT WORK HERE. FOR A BETTER UNDERSTANDING OF THE ACTIONS FILE, FOLLOW THE FOLLOWING YOUTUBE VIDEO.**    
@@ -232,8 +232,6 @@ Add the ESP/SOnOff IP addresses in the actions.py file.
 Add the unique Name or Description of your appliances to be controlled into the main.py file (e.g. lamp, dish washer, coffee machine etc.)
 
 After flashing the ESP/SOnOFF and performing the initial set-up there is no need to modify the arduino firmware code or add any special rules as the default firmware configuration will work just fine.
-
-
 
 ************************************************
 ## **MUSIC STREAMING from YOUTUBE**  
