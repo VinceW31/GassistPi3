@@ -3,7 +3,7 @@
 
 
 *******************************************************************************************************************************
-## GassistPi3 is copied from the original GassistPi by shivasiddharth (  ) and updated to include more functionality relating to IoT, controlling external devices and Home Automation.  It developed for use with a naked Rasberry Pi 3 with just a USB microphone and speaker(s) plugged into the on board audio jack.  The code may work on earlier Raspberry Pis too, but nothing is guaranteed!
+## GassistPi3 is copied from the original GassistPi by shivasiddharth ( https://github.com/shivasiddharth/GassistPi/ ) and updated to include more functionality relating to IoT, controlling external devices and Home Automation.  It developed for use with a naked Rasberry Pi 3 with just a USB microphone and speaker(s) plugged into the on board audio jack.  The code may work on earlier Raspberry Pis too, but nothing is guaranteed!
  
 
 ### Existing GassistPi users 
