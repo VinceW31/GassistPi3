@@ -3,50 +3,54 @@
 
 
 *******************************************************************************************************************************
-## GassistPi3 is copied from the original GassistPi by shivasiddharth ( https://github.com/shivasiddharth/GassistPi/ ) and updated to include more functionality relating to IoT, controlling external devices and Home Automation.  It developed for use with a naked Rasberry Pi 3 with just a USB microphone and speaker(s) plugged into the on board audio jack.  The code may work on earlier Raspberry Pis too, but nothing is guaranteed!
+### GassistPi3 is copied from the original GassistPi by shivasiddharth, this can be found at: https://github.com/shivasiddharth/GassistPi/  
+### The new code GassistPi3 is available here and has updated to include more functionality relating to IoT, controlling external devices and Home Automation.  Its been developed for use with a naked Rasberry Pi3 using just a USB microphone and speaker(s) plugged into the on board audio jack.  The code may work on earlier Raspberry Pis too, but nothing is guaranteed!
  
-
-### Existing GassistPi users 
-
-### New users, 
 *******************************************************************************************************************************
 
-# Features:  
+# Original Features:  
 **1.   Headless auto start on boot.**    
-**2.   Voice control of GPIOs without IFTTT, api.ai, Actions SDK.**   
-**3.   Voice control of NodeMCU without IFTTT and MQTT.**  
-**4.   Radio streaming.**  
-**5.   Voice control of servo connected to RPi GPIO.**  
-**6.   Safe shutdown RPi using voice command.**  
-**7.   Stream Music from YouTube.**  
-**8.   Indicator lights for assistant listening and speaking events.**  
-**9.   Startup audio and audio feedback for wakeword detection.**   
-**10.  Pushbutton service to stop Music or Radio playback.**   
-**11.  Parcel tracking using Aftership API.**  
-**12.  RSS Feed streaming.**  
-**13.  Control of Kodi or Kodi Integration**.  
-**14.  Streaming music from Google Play Music (It is computationally intensive so actions added only for Pi3 and Pi2).**    
+**2.   Direct Voice control of GPIOs without any need for IFTTT, api.ai, Actions SDK.**   
+**3.   Radio station streaming.**  
+**4.   Voice control of a servo connected to RPi GPIO.**  
+**5.   Safe shutdown of the RPi using a simple "Shut Down" voice command.**  
+**6.   Stream Music from YouTube.**  
+**7.   Indicator lights for assistant listening and speaking events.**  
+**8.   Startup audio and audio feedback for wakeword detection.**   
+**9.  Pushbutton service to stop Music or Radio playback.**   
+**10.  Parcel tracking using Aftership API.**  
+**11.  RSS Feed streaming.**  
+**12.  Control of Kodi or Kodi Integration**.  
+**13.  Streaming music from Google Play Music.**    
 
-
+# New Features:
+**1.   Direct Voice control of SOnOff wireless switches, ESP8266 and NodeMCU with simple HTTP commands.**  
 *******************************************************************************************************************************  
-**The Project has adopted the new Google Assistant SDK features released on 20th Dec 2017. Old installations will not work. So kindly Reformat your SD Card and start fresh**  
+# Important Notes: 
+
+**The Project has adopted the new Google Assistant SDK features released on 20th Dec 2017. Old installations of the Google Assistant SDK will not work. So kindly reformat your SD Card and start again from the begining**  
+
+**If you dont need the new features (to control external devices with voice commands) or you're using anything other than an RPi3 then please use the code available from https://github.com/shivasiddharth/GassistPi/**
 *******************************************************************************************************************************
 
 
 *******************************************************************************************************************************  
-**CLI or Raspbian Lite does not support all features and Custom wakeword does not work with Google's AIY image. So please use the Standard Raspbian Desktop image- Link https://www.raspberrypi.org/downloads/raspbian/**  
+## **1. Create a new SD card image** 
 *******************************************************************************************************************************
+CLI or Raspbian Lite does not support all features, so please use the Standard Raspbian Desktop image available from https://www.raspberrypi.org/downloads/raspbian/
 
 *************************************************
-## **FIRST STEP- CLONE the PROJECT on to Pi**   
+## **2. CLONE the PROJECT on to your Pi3**   
 *************************************************
-1. Open the terminal and execute the following  
+Open a terminal and enter the following:  
 
-git clone https://github.com/shivasiddharth/GassistPi    
-
+```
+git clone https://github.com/VinceW31/GassistPi3    
+```
+(you may need to type this in manually if copy and paste produces an error)
 
 *************************************************  
-## **INSTALL AUDIO CONFIG FILES**
+## **3. INSTALL AUDIO CONFIG FILES**
 *************************************************  
 1. Update OS and Kernel    
 
@@ -55,52 +59,31 @@ sudo apt-get update
 sudo apt-get install raspberrypi-kernel  
 ```
 
-2. Restart Pi  
+2. Restart your Pi3
 
-3. Choose the audio configuration according to your setup.   
-**The speaker-test command is used to initialize alsa, so please do not skip that.  
-AIY-HAT and CUSTOM-HAT users, please reboot the Pi at places mentioned, else it will lead to audio and taskbar issues.**  
+```
+sudo reboot
+```
 
-  3.1. USB DAC or USB Sound CARD users,  
-  ```
-  sudo chmod +x /home/pi/GassistPi/audio-drivers/USB-DAC/scripts/install-usb-dac.sh  
-  sudo /home/pi/GassistPi/audio-drivers/USB-DAC/scripts/install-usb-dac.sh
-  speaker-test  
-  ```
+3. Setup audio configuration
+**This step is for a simple naked RPi3 configuration using a USB Mic and amplified speaker(s) connected to the on-board audio jack of the RPi3.   It does not support setups consisting of the AIY-HAT or any other CUSTOM-HATs.**
+ 
+3.1.Enter the following commands line by line:
+(copy and paste should work fine) 
+```
+sudo chmod +x /home/pi/GassistPi/audio-drivers/USB-MIC-JACK/scripts/usb-mic-onboard-jack.sh  
+sudo /home/pi/GassistPi/audio-drivers/USB-MIC-JACK/scripts/usb-mic-onboard-jack.sh  
+```
+3.2. Setup Speaker
+Right click the speaker icon on the desktop (top right) and select Analog Audio so its ticked
 
-  3.2. AIY-HAT users,  
-  ```
-  sudo chmod +x /home/pi/GassistPi/audio-drivers/AIY-HAT/scripts/configure-driver.sh  
-  sudo /home/pi/GassistPi/audio-drivers/AIY-HAT/scripts/configure-driver.sh  
-  sudo reboot  
-  sudo chmod +x /home/pi/GassistPi/audio-drivers/AIY-HAT/scripts/install-alsa-config.sh  
-  sudo /home/pi/GassistPi/audio-drivers/AIY-HAT/scripts/install-alsa-config.sh  
-  speaker-test  
-  ```
+3.3 Setup USB Mic
+Right click the speaker icon again and select the External USB option at the bottom of the drop down list
+In the new window select Controls, then click on the PCM box.
 
-  3.3. USB MIC AND HDMI users,  
-  ```
-  sudo chmod +x /home/pi/GassistPi/audio-drivers/USB-MIC-HDMI/scripts/install-usb-mic-hdmi.sh  
-  sudo /home/pi/GassistPi/audio-drivers/USB-MIC-HDMI/scripts/install-usb-mic-hdmi.sh  
-  speaker-test  
-  ```
-
-  3.4. USB MIC AND AUDIO JACK users,  
-  ```
-  sudo chmod +x /home/pi/GassistPi/audio-drivers/USB-MIC-JACK/scripts/usb-mic-onboard-jack.sh  
-  sudo /home/pi/GassistPi/audio-drivers/USB-MIC-JACK/scripts/usb-mic-onboard-jack.sh  
-  speaker-test  
-  ```
-
-  3.5. CUSTOM VOICE HAT users,  
-  ```
-  sudo chmod +x /home/pi/GassistPi/audio-drivers/CUSTOM-VOICE-HAT/scripts/install-i2s.sh  
-  sudo /home/pi/GassistPi/audio-drivers/CUSTOM-VOICE-HAT/scripts/install-i2s.sh
-  sudo reboot
-  sudo chmod +x /home/pi/GassistPi/audio-drivers/CUSTOM-VOICE-HAT/scripts/custom-voice-hat.sh  
-  sudo /home/pi/GassistPi/audio-drivers/CUSTOM-VOICE-HAT/scripts/custom-voice-hat.sh  
-  speaker-test   
-  ```
+```
+speaker-test  
+```
 
 **Those Using HDMI/Onboard Jack, make sure to force the audio**  
 ```
