@@ -83,9 +83,9 @@ sudo /home/pi/GassistPi/audio-drivers/USB-MIC-JACK/scripts/usb-mic-onboard-jack.
 
 Right click the speaker icon on the desktop (top right) and select Analog Audio so its ticked.
 
-Right click the speaker icon again and select USB Device Settings,
+Right click the speaker icon again and select USB Device Settings
 
-in the new window make sure the Sound Card option at the top of the window is on bcm2835 ALSA,
+In the new window make sure the Sound Card option at the top of the window is on bcm2835 ALSA,
 
 Click on the Select Controls button at the bottom of the window.
 
@@ -98,15 +98,13 @@ Select OK to close the box.
 
 4.3 Setup the USB Mic configuration.
 
-Right click the speaker icon again and select USB Device Settings once more, 
+Right click the speaker icon again and select USB Device Settings once more. 
 
-in the new window click on the bcm2835 ALSA option and change it to the USB PnP Sound Device option.
+In the new window click on the bcm2835 ALSA option and change it to the USB PnP Sound Device option.
 
-Click on the Select Controls button at the bottom of the window and enable both the Mic and AGC options then select Close.
+Click on the Select Controls button at the bottom of the window and enable the Mic option, leave the AGC option unchecked and then select Close.
 
-on the Capture Tab enable the microphone and raise input Vol to Max.
-
-on the Switches Tab click on the Auto Gain Control box to enable it. 
+On the Capture Tab enable the microphone and raise input Vol to Max.
 
 Select OK to close the box.
 
