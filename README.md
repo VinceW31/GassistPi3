@@ -81,32 +81,34 @@ sudo /home/pi/GassistPi/audio-drivers/USB-MIC-JACK/scripts/usb-mic-onboard-jack.
 
 4.2. Setup the Speaker configuration.
 
-Right click the speaker icon on the desktop (top right) and select Analog Audio so its ticked.
+   Right click the speaker icon on the desktop (top right) and select Analog Audio so its ticked.
 
-Right click the speaker icon again and select USB Device Settings
+   Right click the speaker icon again and select USB Device Settings
 
-In the new window make sure the Sound Card option at the top of the window is on bcm2835 ALSA,
+   In the new window make sure the Sound Card option at the top of the window is on bcm2835 ALSA,
 
-Click on the Select Controls button at the bottom of the window.
+   Click on the Select Controls button at the bottom of the window.
 
-Click on the PCM box to enable it and then select Close.
+   Click on the PCM box to enable it and then select Close.
 
-The speaker output should now be displayed and enabled, set Vol to max.
+   The speaker output should now be displayed and enabled, set Vol to max.
 
-Select OK to close the box. 
+   Select OK to close the window. 
 
 
 4.3 Setup the USB Mic configuration.
 
-Right click the speaker icon again and select USB Device Settings once more. 
+   Right click the speaker icon again and select USB Device Settings once more. 
 
-In the new window click on the bcm2835 ALSA option and change it to the USB PnP Sound Device option.
+   In the new window click on the bcm2835 ALSA option and change it to the USB PnP Sound Device option.
 
-Click on the Select Controls button at the bottom of the window and enable the Mic option, leave the AGC option unchecked and then select Close.
+   Click on the Select Controls button at the bottom of the window.
+   
+   Enable the Mic option, leave the AGC option unchecked and then select Close.
 
-On the Capture Tab enable the microphone and raise input Vol to Max.
+   On the Capture Tab enable the microphone and raise input Vol to Max.
 
-Select OK to close the box.
+   Select OK to close the window.
 
 
 4.4 Audio testing.
