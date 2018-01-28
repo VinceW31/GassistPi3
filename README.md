@@ -229,7 +229,9 @@ Follow the tutorials and instructions on the site to flash your ESP/SOnOff devic
 
 Add the ESP/SOnOff IP addresses in the actions.py file. 
 
-Add the unique Name or Description of your appliances to be controlled into the main.py file (e.g. lamp, dish washer, coffee machine etc.)
+Add the unique Name or Description of your appliances to be controlled into the main.py file and action.py (e.g. lamp, dishwasher, coffee machine etc.)
+
+In action.py define the switch type(normal Switch or Momentary switch) controlling each device.
 
 After flashing the ESP/SOnOFF and performing the initial set-up there is no need to modify the arduino firmware code or add any special rules as the default firmware configuration will work just fine.
 
@@ -238,6 +240,8 @@ https://www.youtube.com/watch?v=fN_QKOWvG1s&t=830s
 
 This next link is a tutorial on how to flash a basic ESP8266:
 https://www.letscontrolit.com/wiki/index.php/Basics:_Connecting_and_flashing_the_ESP8266
+
+Example: If your first device is a "Lamp", To switch your device On/Off then just say "Lamp on", or "Turn the lamp on", or even "Switch on the nice red lamp by the setee" if you want, no special trigger commands necessary.
 
 
 ************************************************
