@@ -1,30 +1,34 @@
-# GassistPi3 -- Google Assistant for Raspberry Pi3  
+# RasPi3 with Google Assist and Home Automation (SOnOf/ESP)  
 *******************************************************************************************************************************
 
 
 *******************************************************************************************************************************
-### GassistPi3 is copied from the original GassistPi by shivasiddharth, the original code can be found at: https://github.com/shivasiddharth/GassistPi/  
-### GassistPi3 includes further development and now supports more functionality relating to IoT, controlling external devices and Home Automation.  Its been simplified where possible from the original code and developed for use only with a naked Rasberry Pi3 using just a USB microphone and amplified speaker(s) plugged into the on-board audio jack.  The code may work on earlier Raspberry Pis too, but nothing is guaranteed!
+### The code is derived from the original GassistPi by shivasiddharth which be found at: https://github.com/shivasiddharth/GassistPi/  
+### This project includes development to support more functionality relating to IoT, controlling external devices and Home Automation.  It has been simplified where possible and developed for use only with a naked Rasberry Pi3 using just a USB microphone and amplified speaker(s) plugged into the on-board audio jack.  The code may work on earlier Raspberry Pis too, but nothing is guaranteed!
  
 *******************************************************************************************************************************
 
-# Original Features of GassistPi (still available in this release):  
+# Original features of GassistPi (still available and supported in this release):  
 **1.   Headless auto start on boot.**    
-**2.   Direct Voice control of GPIOs without any need for IFTTT, api.ai, Actions SDK.**   
+**2.   Direct Voice control of GPIOs without any need for IFTTT.**   
 **3.   Radio station streaming.**  
 **4.   Voice control of a servo connected to RPi GPIO.**  
 **5.   Safe shutdown of the RPi using a simple "Shut Down" voice command.**  
-**6.   Stream Music from YouTube.**  
-**7.   Indicator lights for assistant listening and speaking events.**  
-**8.   Startup audio and audio feedback for wakeword detection.**   
-**9.  Pushbutton service to stop Music or Radio playback.**   
-**10.  Parcel tracking using Aftership API.**  
-**11.  RSS Feed streaming.**  
-**12.  Control of Kodi or Kodi Integration**.  
-**13.  Streaming music from Google Play Music.**    
+**6.   Indicator lights for assistant listening and speaking events.**  
+**7.   Startup audio and audio feedback for wakeword detection.**   
+**8.   Pushbutton service to stop Music or Radio playback.**   
+**9.   Streaming music from your Google Play Music library.**    
 
-# New Features of GassistPi3 in this release:
-**1.   Direct Voice control of SOnOff wireless switches, ESP8266 and NodeMCU with simple HTTP commands.**  
+# Original features of GassistPi still available in this release, but not supported (because I dont use or cant test):  
+**1.   Stream Music from YouTube.**  
+**2.   Parcel tracking using Aftership API.**
+**3.   RSS Feed streaming.**  
+
+# Original features of GassistPi removed from this release (because I cant test):  
+**1.   Control of Kodi or Kodi Integration**.
+
+# New Features developed in this release:
+**1.   Direct Voice control of SOnOff wireless switches and ESP8266 / NodeMCU (with ESPEasy firmware) using simple HTTP commands across your own LAN (no need for IFTTT).**  
 
 
 *******************************************************************************************************************************
@@ -32,13 +36,15 @@
 **This Project has adopted the new Google Assistant SDK features released on 20th Dec 2017. Old installations of the Google Assistant SDK will not work. So kindly reformat your SD Card and start again from the begining**  
 
 **If you dont need the new features of GassistPi3 (to control external devices with voice commands) or you're using anything other than an RPi3 then please feel free to use the original code available from https://github.com/shivasiddharth/GassistPi/**
+
+**If you have any suggestions, additions you'd like to see, or general comments / issues then please feel free to let me know.
 *******************************************************************************************************************************
 
 
 **************************************************
 ## **1. Create a new SD card image** 
 **************************************************
-CLI or Raspbian Lite does not support all features, so please use the Standard Raspbian Desktop image available from https://www.raspberrypi.org/downloads/raspbian/
+CLI or Raspbian Lite does not support all the features required, so please use the standard Raspbian Desktop image available from https://www.raspberrypi.org/downloads/raspbian/ to create your SD card image.
 
 
 *************************************************
@@ -134,41 +140,36 @@ You should hear your voice recording.  Adjust Volumes to suit.
 
 
 **********************************************************************  
-## **CONTINUE after SETTING UP AUDIO**
+## **5. Installing Google assistant**
 **********************************************************************   
 
-1. Download credentials--->.json file (refer to this doc for creating credentials https://developers.google.com/assistant/sdk/develop/python/config-dev-project-and-account)   
+5.1 Go to Google and create your Developer Project (refer to this doc for creating credentials https://developers.google.com/assistant/sdk/develop/python/config-dev-project-and-account)  
 
-2. Place the .json file in/home/pi directory **DO NOT RENAME**  
+5.2 Download your Project credentials from Google (ClientSecret.json file) and transfer it to your RasPi3 /home/pi directory **DO NOT RENAME THE FILE**  
 
-3. Use the one-line installer for installing Google Assistant    
-**Pi3 and Armv7 users use the "gassist-installer-pi3.sh" installer and Pi Zero, Pi A and Pi 1 B+ users use the "gassist-installer-pi-zero.sh" installer.**  
-	4.1 Make the installers Executable  
+5.3 Place the .json file in/home/pi directory **DO NOT RENAME THE FILE**  
 
-	```
-	sudo chmod +x /home/pi/GassistPi/scripts/gassist-installer-pi3.sh
-	sudo chmod +x /home/pi/GassistPi/scripts/gassist-installer-pi-zero.sh
+5.3 Install Google Assistant on RasPi3 by entering the following commands into a terminal window:
+```
+sudo chmod +x /home/pi/GassistPi/scripts/gassist-installer-pi3.sh
+sudo  /home/pi/GassistPi/scripts/gassist-installer-pi3.sh 
+```
+This may take a long time and may appear to hang, but leave it alone for a while and it will complete.
+When prompted, enter your Google Cloud console Project-Id, a name for your Assistant and the Full Name of your credentials .json file, including the json extension.**
 
-	```
+5. Copy the google assistant authentication link shown in the terminal window on your RasPi and authorize the Project in your Google account.
 
-	4.2 Execute the installers **Pi3 and Armv7 users use the "gassist-installer-pi3.sh" installer and Pi Zero, Pi A and Pi 1 B+ users use the "gassist-installer-pi-zero.sh" installer. When Prompted, enter your Google Cloud console Project-Id, A name for your Assistant and the Full Name of your credentials file, including the json extension.**  
-	```
-	sudo  /home/pi/GassistPi/scripts/gassist-installer-pi3.sh  
-	sudo  /home/pi/GassistPi/scripts/gassist-installer-pi-zero.sh
+6. Copy the authorization code from your browser window into the terminal window and then press enter.   
 
-	```
+7. After successful authentication, the Google Assistant Demo test will automatically start. At the start, the volume might be low, the assistant volume is independent of the Pi volume, so increase the volume by using the "Volume Up" voice command.
 
-5. Copy the google assistant authentication link from terminal and authorize using your google account  
+8. After verifying the working of assistant, close and exit the terminal.
 
-6. Copy the authorization code from browser onto the terminal and press enter    
-
-7. After successful authentication, the Google Assistant Demo test will automatically start. At the start, the volume might be low, the assistant volume is independent of the Pi volume, so increase the volume by using "Volume Up" command.
-
-8. After verifying the working of assistant, close and exit the terminal    
+9. The Google Assistant service can be stopped and started manually using:
 
 
 *************************************************  
-## **HEADLESS AUTOSTART on BOOT SERVICE SETUP**  
+## **Google Assistent AUTOSTART on RasPi BOOT**  
 *************************************************  
 1. Open the service files in the /home/pi/GassistPi/systemd/ directory and add your project and model ids in the indicated places and save the file.
 
