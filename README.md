@@ -19,7 +19,7 @@
 **8.   Pushbutton service to stop Music or Radio playback.**   
 **9.   Streaming music from your Google Play Music library.**    
 
-# Original features of GassistPi still available in this release, but not supported (because I dont use or cant test):  
+# Original features of GassistPi still available in this release, but not supported (because I dont use):  
 **1.   Stream Music from YouTube.**  
 **2.   Parcel tracking using Aftership API.**
 **3.   RSS Feed streaming.**  
@@ -27,8 +27,8 @@
 # Original features of GassistPi removed from this release (because I cant test):  
 **1.   Control of Kodi or Kodi Integration**.
 
-# New Features developed in this release:
-**1.   Direct Voice control of SOnOff wireless switches and ESP8266 / NodeMCU (with ESPEasy firmware) using simple HTTP commands across your own LAN (no need for IFTTT).**  
+# New Features developed for this release:
+**1.   Direct Voice control of SOnOff wireless switches and ESP8266 / NodeMCU (with ESPEasy firmware) using simple HTTP commands across your own LAN (no need for IFTTT or editing any Arduino scripts).**  
 
 
 *******************************************************************************************************************************
@@ -240,19 +240,30 @@ alt="Detailed Youtube Video" width="240" height="180" border="10" /></a>
 ************************************************
 Download the ESPEasy firmware from here: https://www.letscontrolit.com/wiki/index.php/ESPEasy
 
-Follow the tutorials and instructions on the site to flash your ESP/SOnOff devices with the downloaded firmware, during this process make sure you record the IP address each of your ESP/SOnOff devices is using.
+Follow the tutorials below and the instructions on the site to flash your ESP/SOnOff devices with the downloaded firmware, during this process make sure you record the IP address that each of your ESP/SOnOff devices is using.
 
-Add the ESP/SOnOff IP addresses in the actions.py file. 
-
-Add the unique Name or Description of your appliances to be controlled into the main.py file (e.g. lamp, dish washer, coffee machine etc.)
-
-After flashing the ESP/SOnOFF and performing the initial set-up there is no need to modify the arduino firmware code or add any special rules as the default firmware configuration will work just fine.
-
-The following YouTube link shows how to easily flash a SOnOff wireless switch with the ESPEasy firmware needed for this code to work:
-https://www.youtube.com/watch?v=fN_QKOWvG1s&t=830s
-
-This next link is a tutorial on how to flash a basic ESP8266:
+This link is a tutorial on how to flash a basic ESP8266:
 https://www.letscontrolit.com/wiki/index.php/Basics:_Connecting_and_flashing_the_ESP8266
+
+The YouTube link shows how to flash a SOnOff wireless switch with the ESPEasy firmware:
+https://www.youtube.com/watch?v=fN_QKOWvG1s
+
+If you need more detailed tutorial then you can also try this link:
+https://rutg3r.com/sonoff-firmware-tutorial-to-esp-easy/
+
+After flashing and performing the initial set-up there is no need to modify any Arduino firmware code or add any special rules as the default firmware configuration you just loaded to the ESP/SOnOFF will work fine as it is.
+
+After flashing your ESP/SOnOff then add the new IP addresses (that you recorded above) for each of the devices in the actions.py file under the "IP Address of ESP/SOnOff" section
+
+Add a Unique user friendly Name / Description for each of your appliances to be controlled into the main.py file (e.g. lamp, dish washer, coffee machine etc.) under the "Appliance Names" section.
+
+Add a similar or the same Name / Description for each of the ESP/SOnOff device switches into the action.py file under the "ESP Device Name" section.
+
+The  type of Switching action you want for each device switch must be correctly entered in the action.py file, under the "ESP Device Type" section.  You must identify the switch type for each device, the only valid options are ”Switch” (standard On/Off switch) or “Momentary” (like a Push switch).
+
+
+
+
 
 ************************************************
 ## **MUSIC STREAMING from YOUTUBE**  
