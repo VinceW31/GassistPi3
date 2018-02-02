@@ -14,7 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from kodijson import Kodi, PLAYER_VIDEO
 import RPi.GPIO as GPIO
 import argparse
 import os.path
@@ -33,27 +32,18 @@ from actions import YouTube_No_Autoplay
 from actions import YouTube_Autoplay
 from actions import stop
 from actions import radio
-from actions import device1
-from actions import device2
-from actions import device3
-from actions import device4
 from actions import ShutDown
 from actions import track
 from actions import feed
-from actions import kodiactions
 from actions import mutevolstatus
+
+from devices import device
+from devices import test_wifi
+
 from gmusic import play_playlist
 from gmusic import play_songs
 from gmusic import play_album
 from gmusic import play_artist
-
-#Login with default kodi/kodi credentials
-#kodi = Kodi("http://localhost:8080/jsonrpc")
-
-#Login with custom credentials
-# Kodi("http://IP-ADDRESS-OF-KODI:8080/jsonrpc", "username", "password")
-kodi = Kodi("http://192.168.1.15:8080/jsonrpc", "kodi", "kodi")
-
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
@@ -72,6 +62,11 @@ appliance1='lamp' #for example, if device 1 is a lamp, then you can say "switch 
 appliance2='kettle'
 appliance3='coffee machine'
 appliance4='washing machine'
+
+appliance = (appliance1,
+             appliance2,
+             appliance3,
+             appliance4)
 
 def process_device_actions(event, device_id):
     if 'inputs' in event.args:
@@ -107,6 +102,10 @@ def process_event(event, device_id):
         led.ChangeDutyCycle(100)
         print()
     print(event)
+    
+    if event.type == EventType.ON_CONVERSATION_TURN_TIMEOUT:
+       GPIO.output(5,GPIO.LOW)
+       GPIO.output(6,GPIO.LOW)
 
     if (event.type == EventType.ON_RESPONDING_STARTED and event.args and not event.args['is_error_response']):
        GPIO.output(5,GPIO.LOW)
@@ -124,10 +123,6 @@ def process_event(event, device_id):
             event.args and not event.args['with_follow_on_turn']):
         GPIO.output(5,GPIO.LOW)
         led.ChangeDutyCycle(0)
-        #Uncomment the following after starting the Kodi
-        #with open('/home/pi/.volume.json', 'r') as f:
-               #vollevel = json.load(f)
-               #kodi.Application.SetVolume({"volume": vollevel})
         print()
 
     if event.type == EventType.ON_DEVICE_ACTION:
@@ -209,33 +204,25 @@ def main():
                     YouTube_No_Autoplay(str(usrcmd).lower())
             if 'stop'.lower() in str(usrcmd).lower():
                 stop()
-            if 'tune into'.lower() in str(usrcmd).lower():
+            if 'tune into'.lower() in str(usrcmd).lower() or 'tune in to'.lower() in str(usrcmd).lower() or 'tune to'.lower() in str(usrcmd).lower():
                 assistant.stop_conversation()
                 radio(str(usrcmd).lower())
             if 'shut down'.lower() in str(usrcmd).lower():
                 assistant.stop_conversation()
                 ShutDown(str(usrcmd).lower())
-            if appliance1.lower() in str(usrcmd).lower(): 
-                assistant.stop_conversation()
-                device1(str(usrcmd).lower())  
-            if appliance2.lower() in str(usrcmd).lower(): 
-                assistant.stop_conversation()
-                device2(str(usrcmd).lower())
-            if appliance3.lower() in str(usrcmd).lower(): 
-                assistant.stop_conversation()
-                device3(str(usrcmd).lower())
-            if appliance4.lower() in str(usrcmd).lower(): 
-                assistant.stop_conversation()
-                device4(str(usrcmd).lower()) 
+            for appliance_number, appliance_name in enumerate(appliance,1):
+                if appliance_name.lower() in str(usrcmd).lower(): 
+                    assistant.stop_conversation()
+                    device(appliance_name, appliance_number, str(usrcmd).lower())
             if 'parcel'.lower() in str(usrcmd).lower():
                 assistant.stop_conversation()
                 track()
+            if 'wifi'.lower() in str(usrcmd).lower() or 'wi-fi'.lower() in str(usrcmd).lower():
+                assistant.stop_conversation()
+                test_wifi(str(usrcmd).lower()) 
             if 'news'.lower() in str(usrcmd).lower() or 'feed'.lower() in str(usrcmd).lower() or 'quote'.lower() in str(usrcmd).lower():
                 assistant.stop_conversation()
                 feed(str(usrcmd).lower())
-            if 'on kodi'.lower() in str(usrcmd).lower():
-                assistant.stop_conversation()
-                kodiactions(str(usrcmd).lower())
             if 'google music'.lower() in str(usrcmd).lower():
                 assistant.stop_conversation()
                 os.system('pkill mpv')
