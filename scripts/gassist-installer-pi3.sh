@@ -44,7 +44,7 @@ sudo apt-get install mplayer -y
 sudo pip3 install mps-youtube youtube-dl
 sudo apt-get install vlc -y
 mpsyt set player vlc, set playerargs ,exit
-sudo apt-get install elinks -y
+#sudo apt-get install elinks -y
 #--------------------------------------------------------------------------------
 sudo apt-get update -y
 sudo apt-get install python3-dev python3-venv -y
@@ -59,9 +59,9 @@ pip install wheel
 pip install RPi.GPIO
 #--------------GassistPi Deps----------------------------------------------------
 pip install pyaudio
-pip install aftership
-pip install feedparser
-pip install kodi-json
+#pip install aftership
+#pip install feedparser
+#pip install kodi-json
 pip install gmusicapi
 pip install requests
 pip install urllib3
