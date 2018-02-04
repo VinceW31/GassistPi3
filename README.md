@@ -10,17 +10,17 @@
 
 # Original features of GassistPi (retained in this release):  
 **1.   Headless auto start on boot.**    
-**2.   Direct Voice control of GPIOs without any need for IFTTT.**   
+**2.   Direct Voice control of GPIOs.**   
 **3.   Radio station streaming.**  
 **4.   Voice control of a servo connected to RPi GPIO.**  
-**5.   Safe shutdown of the RPi3 using "Shut Down" voice command.**  
-**6.   Indicator lights for assistant listening and speaking events.**  
+**5.   Safe shutdown of the RPi3 with "Shut Down" voice command.**  
+**6.   Indicator lights for assistant Listening and Speaking events.**  
 **7.   Startup audio and audio feedback for wakeword detection.**   
 **8.   Pushbutton service to stop Music or Radio playback.**   
-**9.   Streaming music from your Google Play Music library.**     
+**9.   Stream music from your Google Play Music library.**     
 
 # New Features developed for this release:
-**1.   Direct Voice control of up to 10 SOnOff wireless switches or ESP8266 / NodeMCU using simple HTTP commands across your own LAN (no need for IFTTT or editing any Arduino scripts).**  
+**1.   Voice control for up to 10x SOnOff wireless switches or ESP8266 / NodeMCU using simple HTTP commands across your own LAN (no need for IFTTT or editing any Arduino scripts).**  
 
 
 *******************************************************************************************************************************
@@ -161,7 +161,7 @@ When prompted, enter your Google Cloud console Project-Id, a name for your Assis
 
 
 *************************************************  
-## **Google Assistent AUTOSTART on RasPi BOOT**  
+## **Google Assistant Autostart on RasPi Boot**  
 *************************************************  
 1. Open the service files in the /home/pi/GassistPi/systemd/ directory and add your project and model ids in the indicated places and save the file.
 
