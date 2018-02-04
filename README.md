@@ -1,10 +1,15 @@
-# RasPi3 with Google Assistant including Home Automation using SOnOff/ESP8266  
+# RasPi3 Home Automation with Google Assistant Voice Control including  using SOnOff/ESP8266  
 *******************************************************************************************************************************
 
 
 *******************************************************************************************************************************
-### The code used as the basis for this project is derived from the original GassistPi by shivasiddharth, his code can be found at: https://github.com/shivasiddharth/GassistPi/  
-### This project includes development to support more functionality relating to IoT, controlling external devices and Home Automation.  It has been simplified where possible and developed for use only with a naked Rasberry Pi3 using just a USB microphone and amplified speaker(s) plugged into the on-board audio jack.  The code may work on earlier Raspberry Pis too, but nothing is guaranteed!
+### The code used as the basis for this project is derived from the original GassistPi by shivasiddharth. His project can be found at: https://github.com/shivasiddharth/GassistPi/  
+*******************************************************************************************************************************
+
+*******************************************************************************************************************************
+
+##Overview:
+###This project builds on the original features of GassistPi and now provides Home Automation functionality using Voice Contol. The code  has been simplified where possible and is developed for use only with a naked Rasberry Pi3 using just a USB microphone and amplified speaker(s) plugged into the on-board audio jack.  The code may work on earlier Raspberry Pi's too, but nothing is guaranteed!
  
 *******************************************************************************************************************************
 
