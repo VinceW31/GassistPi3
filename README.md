@@ -1,4 +1,4 @@
-# RasPi3 Home Automation with Google Assistant Voice Control including  using SOnOff/ESP8266  
+# RasPi3 Home Automation with Google Assistant Voice Control using SOnOff/ESP8266  
 *******************************************************************************************************************************
 
 
