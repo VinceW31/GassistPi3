@@ -3,17 +3,17 @@
 
 
 *******************************************************************************************************************************
-### The code used as the basis for this project is derived from the original GassistPi by shivasiddharth. His project can be found at: https://github.com/shivasiddharth/GassistPi/  
+The code used as the basis for this project is derived from the original GassistPi by shivasiddharth. His project can be found at: https://github.com/shivasiddharth/GassistPi/  
 *******************************************************************************************************************************
 
 *******************************************************************************************************************************
 
-##Overview:
-###This project builds on the original features of GassistPi and now provides Home Automation functionality using Voice Contol. The code  has been simplified where possible and is developed for use only with a naked Rasberry Pi3 using just a USB microphone and amplified speaker(s) plugged into the on-board audio jack.  The code may work on earlier Raspberry Pi's too, but nothing is guaranteed!
+## Overview:
+**This project builds on the original features of GassistPi and now provides Home Automation functionality using Voice Contol. The code  has been simplified where possible and is developed for use only with a naked Rasberry Pi3 using just a USB microphone and amplified speaker(s) plugged into the on-board audio jack.  The code may work on earlier Raspberry Pi's too, but nothing is guaranteed!
  
 *******************************************************************************************************************************
 
-# Original features of GassistPi (retained in this release):  
+## Original features of GassistPi (retained in this release):  
 **1.   Headless auto start on boot.**    
 **2.   Direct Voice control of GPIOs.**   
 **3.   Radio station streaming.**  
@@ -24,45 +24,45 @@
 **8.   Pushbutton service to stop Music or Radio playback.**   
 **9.   Stream music from your Google Play Music library.**     
 
-# New Features developed for this release:
+## New Features developed for this release:
 **1.   Voice control for up to 10x SOnOff wireless switches or ESP8266 / NodeMCU using simple HTTP commands across your own LAN (no need for IFTTT or editing any Arduino scripts).**  
 
 
 *******************************************************************************************************************************
-# Important Notes: 
-**This Project has adopted the new Google Assistant SDK features released on 20th Dec 2017. Old installations of the Google Assistant SDK will not work. So kindly reformat your SD Card and start again from the begining**  
+## **Important Notes:**
+**This Project has adopted the new Google Assistant SDK features released on 20th Dec 2017. Old installations of the Google Assistant SDK will not work. So kindly reformat your SD Card and start again from the begining.**  
 
 **If you dont need the new features of GassistPi3 (to control external devices with voice commands) or you're using anything other than an RPi3 then please feel free to use the original code available from https://github.com/shivasiddharth/GassistPi/**
 
-**If you have any suggestions, additions you'd like to see, or general comments / issues then please feel free to let me know.
+**If you have any suggestions, additions you'd like to see, or general comments / issues then please feel free to let me know.**
 *******************************************************************************************************************************
 
 
 **************************************************
 ## **1. Create a new SD card image** 
 **************************************************
-CLI or Raspbian Lite does not support all the features required, so please use the standard Raspbian Desktop image available from https://www.raspberrypi.org/downloads/raspbian/ to create your SD card image.
+**CLI or Raspbian Lite does not support all the features required, so please use the standard Raspbian Desktop image available from https://www.raspberrypi.org/downloads/raspbian/ to create your SD card image.
 
 
 *************************************************
 ## **2. Clone the Project on to your Pi3**   
 *************************************************
-Open a terminal and enter the following:  
+**Open a terminal and enter the following:  
 ```
 git clone https://github.com/VinceW31/GassistPi3    
 ```
-(you may need to type this in manually if copy and paste produces an error)
+**(you may need to type this in manually if copy and paste produces an error)
 
 
 *************************************************  
 ## **3. Update to Latest Versions**
 *************************************************  
-Update OS and Kernel    
+**Update OS and Kernel    
 ```
 sudo apt-get update  
 sudo apt-get install raspberrypi-kernel  
 ```
-Restart your Pi3
+**Restart your Pi3
 ```
 sudo reboot
 ```
@@ -72,9 +72,8 @@ sudo reboot
 ## **4. Audio Configuration**
 *************************************************  
 
-Setup audio configuration.
-
-(This step is for a simple naked RPi3 configuration using a USB Mic and amplified Speaker(s) connected to the on-board audio jack of the RPi3.   It does not support setups consisting of the AIY-HAT or any other CUSTOM-HATs.)**
+**Setup audio configuration.
+**(This step is for a simple naked RPi3 configuration using a USB Mic and amplified Speaker(s) connected to the on-board audio jack of the RPi3.   It does not support setups consisting of the AIY-HAT or any other CUSTOM-HATs.)**
  
 4.1.Enter the following commands line by line (copy and paste should work fine):
 ```
