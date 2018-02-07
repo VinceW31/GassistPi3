@@ -1,4 +1,4 @@
-# RasPi3 Home Automation with Google Assistant Voice Control using SOnOff/ESP8266  
+# RasPi3 Home Automation with Google Assistant voice control using SOnOff/ESP8266  
 *******************************************************************************************************************************
 
 
@@ -229,7 +229,7 @@ If you wish to change the keyword, you can replace the 'servo' in the action.py 
 For safe shutdown of the pi, simple say: **shut down**  
 
 *******************************************************************
-## **VOICE CONTROL of SOnOff wireless switch or ESP8266 devices**
+## **Voice Control of SOnOff wireless switches or ESP8266 devices**
 *******************************************************************
 Download the ESPEasy firmware from here: https://www.letscontrolit.com/wiki/index.php/ESPEasy
 
@@ -264,22 +264,19 @@ Enter your Google userid and password in the gmusic.py file in the line **"logge
 ### Getting app specific password:
 Refer to this page on google help - https://support.google.com/accounts/answer/185833?hl=en
 
-### What you can do:
-Play all your songs in loop using the syntax: **"Hey Google, Play all the songs from Google Music"**
+### What you can do in this release:
+Play all your songs in loop using the command: **"Hey Google, Play all the songs from Google Music"**
 
-Play songs added to the user created playlist (does not include: most played playlist, thumsup playlist, etc) using the syntax: **"Hey Google, Play songs from the first playlist in Google Music"**
-Playlists are sorted by date created, if you have multiple playlists, use a similar syntax replacing first with second, third etc. Also you need to make suitable changes in the main.py (It has been commented in the script to help)
+Play songs in your own Google Music playlists (this does not include Auto generated Playlists like: most played, thumsup, etc) using the command: **"Hey Google, Play my "PLAYLIST_NAME" playlist"**
 
-Play songs by a particular artist using the syntax: **"Hey Google, Play songs by artist YOUR_ARTIST_NAME from Google Music"**
+Play songs by artist using the syntax: **"Hey Google, Play songs by artist YOUR_ARTIST_NAME from Google Music"**
 
 Play songs from particular album using the syntax: **"Hey Google, Play songs from album YOUR_ALBUM_NAME from Google Music"**
 
 ### What you cannot do at the moment: (some features may be added later):
 Change tracks
 Shuffle tracks
-Repeat tracks
-
-**Due to the Pi Zero's limitations, and computationally intensive nature of the Google Music streaming feature, this action has not been enabled for Pi Zero.**  
+Repeat tracks  
 
 ************************************************
 ## **Radio Station Streaming**  
